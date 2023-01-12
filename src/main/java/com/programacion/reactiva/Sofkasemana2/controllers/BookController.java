@@ -3,13 +3,11 @@ package com.programacion.reactiva.Sofkasemana2.controllers;
 import com.programacion.reactiva.Sofkasemana2.models.Book;
 import com.programacion.reactiva.Sofkasemana2.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.reactive.result.method.annotation.ResponseEntityResultHandler;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import javax.swing.text.html.parser.Entity;
 
 @RestController
 @RequestMapping("/reactive/api/books")
@@ -20,11 +18,15 @@ public class BookController {
         this.bookService=bookService;
 
     }
-    @GetMapping(value = "/")
+    @GetMapping(path = "/1", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public String home() {
+        return new String("Hello World!");
+    }
+    @GetMapping(value = "/", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Book> getAllBook(){
         return bookService.getAllBook();
     }
-    @GetMapping(value = "/presure/{nro}")
+    @GetMapping(value = "/presure/{nro}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public  Flux<Book>getAllBookBackPresure(@PathVariable int nro){
         return  bookService.getAllBookBackPresure(nro);
     }

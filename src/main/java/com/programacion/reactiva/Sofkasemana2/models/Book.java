@@ -1,14 +1,18 @@
 package com.programacion.reactiva.Sofkasemana2.models;
 
+import com.mongodb.client.model.Collation;
 import lombok.Data;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import static com.fasterxml.jackson.databind.type.LogicalType.Collection;
+
 @Data
-@Document("Books")
+@Document(value = "Books")
 public class Book {
     @Id
-    private long    id;
+    private String    id = new ObjectId().toString();
     private String title;
     private String author;
     public Book(){}
@@ -16,13 +20,13 @@ public class Book {
         this.author=author;
         this.title=title;
     }
-    public Book (Long id,String title,String author) {
+    public Book (String id,String title,String author) {
         this.id=id;
         this.author=author;
         this.title=title;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
@@ -33,7 +37,7 @@ public class Book {
         return author;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
     public void setTitle(String title) {
