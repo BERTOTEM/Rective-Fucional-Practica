@@ -1,5 +1,6 @@
 package com.programacion.reactiva.Sofkasemana2.router;
 
+import com.programacion.reactiva.Sofkasemana2.handler.BookHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -26,4 +27,5 @@ public class BookRouter {
                         ,bookHandler::updateBook);
 
 
+}
 }
