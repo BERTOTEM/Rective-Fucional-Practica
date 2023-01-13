@@ -18,12 +18,12 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.http.MediaType;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 
 
 @Configuration
-@RestController
 public class BookRouter {
 
     @Bean
@@ -80,8 +80,12 @@ public class BookRouter {
                                                     content = @Content(schema = @Schema(implementation = Book.class))
                                             ),
                                             @ApiResponse(responseCode = "404",description = "no se pudo crear")
-                                    }
-                            )),
+                                    },
+                                    requestBody = @RequestBody(
+                                    content = @Content(schema = @Schema(
+                                            implementation = Book.class
+                                    ))
+                            ))),
             @RouterOperation(
                     path = "/api/func/books/"+"{id}",
                     produces = {MediaType.APPLICATION_JSON_VALUE},
@@ -114,11 +118,17 @@ public class BookRouter {
                                     ),
                                     @ApiResponse(responseCode = "404",description = "customer not found with given id")
                             }
+                            ,
+                            requestBody = @RequestBody(
+                                    content = @Content(schema = @Schema(
+                                            implementation = Book.class
+                                    ))
+                            )
                     )),
 
             })
     public RouterFunction<ServerResponse> bookRouterFunc(BookHandler bookHandler){
-        return RouterFunctions.route(GET("/api/func/books/").and(accept(MediaType.TEXT_EVENT_STREAM))
+        return RouterFunctions.route(GET("/api/func/books/").and(accept(MediaType.APPLICATION_JSON))
                         ,bookHandler::getAllBooks)
                 .andRoute(GET("/api/func/books/"+"{id}").and(accept(MediaType.APPLICATION_JSON))
                         ,bookHandler::getOneBook)

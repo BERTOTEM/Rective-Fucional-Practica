@@ -7,11 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.reactive.config.EnableWebFlux;
 
 @SpringBootApplication
-@EnableWebFlux
+//@EnableWebFlux
 @OpenAPIDefinition(info = @Info(
-		title = "Spring webflux crud example",
-		version = "1.0",
-		description = "sample documents"
+		title = "Segunda Semana Spring webflux Implementacion de Crud Simple y Swagger ",
+		version = "1.0.0",
+		description = "Practica para afianzar conocimientos de ractividad y funcional"
 ))
 public class SofkaSemana2Application {
 
