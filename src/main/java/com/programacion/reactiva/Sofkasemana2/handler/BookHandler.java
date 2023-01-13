@@ -35,7 +35,7 @@ public class BookHandler {
                 ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(fromValue(item))
-                        .switchIfEmpty(notFound));
+                        ).switchIfEmpty(notFound);
 
     }
     public Mono<ServerResponse> createBook(ServerRequest serverRequest) {

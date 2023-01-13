@@ -11,7 +11,7 @@ import static com.fasterxml.jackson.databind.type.LogicalType.Collection;
 @Document(value = "Books")
 public class Book {
     @Id
-    private String    id   = new ObjectId().toString();;
+    private String    id   = new ObjectId().toString();
     private String title;
     private String author;
     public Book(){}
