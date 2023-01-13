@@ -1,4 +1,4 @@
-package com.programacion.reactiva.Sofkasemana2.config;
+/*package com.programacion.reactiva.Sofkasemana2.config;
 
 
 import org.springframework.context.annotation.Bean;
@@ -13,4 +13,4 @@ public class SwaggerConfig {
     @Bean
     public Docket BookApi() {
         return new Docket(DocumentationType.SWAGGER_2);
-    }}
+    }}*/

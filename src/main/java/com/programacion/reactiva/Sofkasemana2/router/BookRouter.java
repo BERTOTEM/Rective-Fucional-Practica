@@ -13,6 +13,7 @@ import org.springdoc.core.annotations.RouterOperations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -22,6 +23,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 
 
 @Configuration
+@RestController
 public class BookRouter {
 
     @Bean
@@ -35,10 +37,12 @@ public class BookRouter {
                             operation = @Operation(operationId = "getAllBooks",
                                     responses = {
                                             @ApiResponse(
-                                                    responseCode = "201",
+                                                    responseCode = "200",
                                                     description = "melo",
                                                     content = @Content(schema = @Schema(implementation = Book.class))
-                                            )
+                                            ),
+                                            @ApiResponse(responseCode = "404",description = "MEGA ERROR")
+
                                     }
 
                             )
