@@ -18,10 +18,7 @@ public class BookController {
         this.bookService=bookService;
 
     }
-    @GetMapping(path = "/1", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public String home() {
-        return new String("Hello World!");
-    }
+
     @GetMapping(value = "/", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Book> getAllBook(){
         return bookService.getAllBook();
@@ -39,7 +36,7 @@ public class BookController {
         return bookService.postBook(book).log();
     }
     @PutMapping("/{id}")
-    public Mono<ResponseEntity<Book>> updateBook(@PathVariable Long id,@RequestBody Book book){
+    public Mono<ResponseEntity<Book>> updateBook(@PathVariable long id,@RequestBody Book book){
         return bookService.updateBook(id,book);
     }
     @DeleteMapping("/{id}")
