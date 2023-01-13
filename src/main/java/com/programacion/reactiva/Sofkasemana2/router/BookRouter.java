@@ -100,7 +100,8 @@ public class BookRouter {
                                             content = @Content(schema = @Schema(implementation = Book.class))
                                     ),
                                     @ApiResponse(responseCode = "404",description = "customer not found with given id")
-                            }
+                            },parameters = {
+                            @Parameter(in = ParameterIn.PATH,name = "id")}
                     )),
 
             @RouterOperation(
@@ -123,7 +124,9 @@ public class BookRouter {
                                     content = @Content(schema = @Schema(
                                             implementation = Book.class
                                     ))
-                            )
+
+                            ),parameters = {
+                            @Parameter(in = ParameterIn.PATH,name = "id")}
                     )),
 
             })

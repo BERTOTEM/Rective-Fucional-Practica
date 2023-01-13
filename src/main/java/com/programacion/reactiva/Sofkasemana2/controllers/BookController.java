@@ -28,7 +28,7 @@ public class BookController {
         return  bookService.getAllBookBackPresure(nro);
     }
     @GetMapping("/{id}")
-    public Mono<Book> findById(@PathVariable long id){
+    public Mono<Book> findById(@PathVariable String id){
         return bookService.findById(id);
     }
     @PostMapping("/")
@@ -36,11 +36,11 @@ public class BookController {
         return bookService.postBook(book).log();
     }
     @PutMapping("/{id}")
-    public Mono<ResponseEntity<Book>> updateBook(@PathVariable long id,@RequestBody Book book){
+    public Mono<ResponseEntity<Book>> updateBook(@PathVariable String id,@RequestBody Book book){
         return bookService.updateBook(id,book);
     }
     @DeleteMapping("/{id}")
-    public Mono<ResponseEntity<Void>> deleBookId(@PathVariable long id){
+    public Mono<ResponseEntity<Void>> deleBookId(@PathVariable String id){
         return bookService.deleteUser(id)
                 .map(r->ResponseEntity.ok().<Void>build())
                 .defaultIfEmpty(ResponseEntity.notFound().build());

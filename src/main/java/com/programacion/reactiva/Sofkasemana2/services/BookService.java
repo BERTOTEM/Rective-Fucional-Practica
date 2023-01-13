@@ -28,14 +28,14 @@ public class BookService {
         return bookFlux.limitRate(limitRequest);
 
     }
-    public Mono<Book> findById(Long id){
+    public Mono<Book> findById(String id){
         return bookRepository.findById(id);
 
     }
     public Mono<Book> postBook(Book book){
         return bookRepository.save(book).log();
     }
-    public Mono<ResponseEntity<Book>> updateBook(Long id,Book book){
+    public Mono<ResponseEntity<Book>> updateBook(String id,Book book){
         return bookRepository.findById(id)
                 .flatMap(oldBook ->{
                     oldBook.setTitle(book.getTitle());
@@ -46,7 +46,7 @@ public class BookService {
                 .defaultIfEmpty( new ResponseEntity<>(HttpStatus.OK));
 
     }
-    public Mono<Book> deleteUser(long id){
+    public Mono<Book> deleteUser(String id){
 
         return bookRepository.findById(id)
                 .flatMap(deletedBook -> bookRepository
